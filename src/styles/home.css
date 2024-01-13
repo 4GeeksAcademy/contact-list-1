@@ -1,0 +1,17 @@
+.contenedor{
+    display: flex;
+    border: 2px solid #00471b;
+    width: 500px;
+    background-color: white;
+    min-height: 70px;
+    padding: 8px 15p 8px 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.botones{
+    width: 60%;
+    text-align: right;
+}
+
