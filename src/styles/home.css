@@ -1,17 +1,45 @@
+.main-container{
+    text-align: -webkit-center;
+}
+
 .contenedor{
     display: flex;
-    border: 2px solid #00471b;
-    width: 500px;
+    border: 2px solid hsl(143, 100%, 14%);
+    width: 70%;
+    height: 170px;
     background-color: white;
     min-height: 70px;
-    padding: 8px 15p 8px 20px;
+    /* padding: 8px 15p 8px 20px; */
     align-items: center;
     justify-content: center;
     margin-top: 15px;
+    /* margin-right: 20px;
+     */
+     margin-bottom: -20px;
+}
+
+.lista{
+    text-align: start;
+    list-style-type: none;
+    width: 100%;
 }
 
 .botones{
     width: 60%;
     text-align: right;
+    
 }
 
+.pencil{
+    border: none
+}
+
+.photo{
+    border-radius: 50%;
+    max-width: 45%;
+    max-height: 45%;
+}
+
+.btn-success{
+    margin-right: 50px;
+}

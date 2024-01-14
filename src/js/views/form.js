@@ -3,11 +3,12 @@ import { useParams, useNavigate } from "react-router"; // importar el use params
 import { Context } from "../store/appContext";
 
 
+
 const Formulario = () => {
     const urlBase = "https://playground.4geeks.com/apis/fake/contact/"
 
     let { id } = useParams(); // Para las rutas dinamicas, 
-    const [fullName, setFullName] = useState() // crear los estados para capturar los valores ingresados al formulario
+    const [fullName, setFullName] = useState(); // crear los estados para capturar los valores ingresados al formulario
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
     const [address, setAddress] = useState()
@@ -18,6 +19,7 @@ const Formulario = () => {
     const manejoEnvio = (e) => { // funcion para evitar que se cargue la pagina si se da enter
         e.preventDefault()
     }
+
     // funcion para crear un contato, linkeado al boton submit
     const envioInformacion = async () => {
         // crear un contacto con el metodo post
@@ -72,22 +74,22 @@ const Formulario = () => {
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Fullname</label>
                     {/* onChage para capturar el name, uso la funcion */}
-                    <input onChange={(e) => setFullName(e.target.value)} value={store.currentInformation.full_name} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input onChange={(e) => setFullName(e.target.value)}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} value={store.currentInformation.email} type="email" className="form-control" id="2" />
+                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="2" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Phone</label>
-                    <input onChange={(e) => setPhone(e.target.value)} value={store.currentInformation.phone} type="number" className="form-control" id="3" />
+                    <input onChange={(e) => setPhone(e.target.value)}  type="number" className="form-control" id="3" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Address</label>
-                    <input onChange={(e) => setAddress(e.target.value)} value={store.currentInformation.address} type="text" className="form-control" id="4" />
+                    <input onChange={(e) => setAddress(e.target.value)}  type="text" className="form-control" id="4" />
                 </div>
-                {/*   funcion para hacer la creacion del contacto */}
+                {/* funcion para hacer la creacion del contacto */}
                 <button onClick={envioInformacion} type="submit" className="btn btn-primary">Submit</button>
             </form>
 
@@ -95,4 +97,5 @@ const Formulario = () => {
 
     )
 }
+
 export default Formulario //solo puedo hacer export default una vez por archivo

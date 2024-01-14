@@ -13,7 +13,7 @@ export const Home = () => {
 
 	const {store, actions} = useContext(Context) // cuando es global utilizo { }
 
-	// let { id } = useParams()
+	let { id } = useParams()
 
 	const navigate = useNavigate()
 	//metodo get
@@ -48,13 +48,13 @@ export const Home = () => {
 			navigate("/") //preguntar aca
 		} catch(error) {
 			console.log(error);
-		}
+		} 
 	}
-
-	const handlerEdit = (element) =>{
-		actions.saveCurrentInformation(element) // la funcion que tiene los contactos esta en el store en el objeto currentInfomation la esta trayendo del actions, 
-		navigate('/form/' + element.id) // dirigir al elemento que necesito
-	}
+	//pasamos todo el objeto
+	// const handlerEdit = (element) =>{
+	// 	actions.saveCurrentInformation(element) // la funcion que tiene los contactos esta en el store en el objeto currentInfomation la esta trayendo del actions, 
+	// 	navigate('/form/' + element.id) // dirigir al elemento que necesito
+	// }
 
 	//callback una funcion que recibe una funcion 
 	useEffect(() => {
@@ -62,25 +62,26 @@ export const Home = () => {
 	}, []) //segundo argumento lista de dependenciaz
 
 	return (
-		<div className="text-center mt-5">
+		<div className="main-container">
 			<ul>
 				{/* itera el array de objetos */}
 				{contacts.map((element) => {
 					return (
 						<div className="contenedor" key={element.id}>
-							<li className="lista"> <div>{element.full_name}</div> <div>{element.address}</div> 
-							<div>{element.phone}</div> <div>{element.email}</div></li>
-
+							<div><img src="https://ianrmedia.unl.edu/images/resources/nilo-ren.jpg" className="photo" alt="..."/></div>
+							<li className="lista" > 
+							<div><h4>{element.full_name}</h4></div>
+							<div><i className="fa-solid fa-location-dot"></i>	{element.address}</div> 
+							<div><i className="fa-solid fa-phone-flip"></i>	{element.phone}</div> 
+							<div><i className="fa-solid fa-envelope"></i>	{element.email}</div></li>
+						
 							<div className="botones">
-								{/* <button onClick={() => updateContact(element.id)}>editar</button> */}
 								{/* ruta dinamica que le vamos a pasar id */}
-								{/* <button>
-									<Link to={'/form/' + element.id}> 
-										Editar
-									</Link>
-								</button> */}
-								<button onClick={() => handlerEdit(element)}>editar</button>
-								<button onClick={() => deleteContact(element.id)}>eliminar</button>
+								<Link to={'/form/' + element.id}> 
+									<button clasName="pencil" style={{border: "none", backgroundColor: "white", margin: "10px"}}><i class="fa-solid fa-pencil"></i></button>
+								</Link>
+								{/* <button onClick={() => handlerEdit(element)}>editar</button> */}
+								<button style={{border: "none", backgroundColor: "white", margin: "25px" }} onClick={() => deleteContact(element.id)}><i class="fa-solid fa-trash"></i></button>
 							</div>
 						</div>
 					)
