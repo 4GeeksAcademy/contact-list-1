@@ -78,10 +78,10 @@ export const Home = () => {
 							<div className="botones">
 								{/* ruta dinamica que le vamos a pasar id */}
 								<Link to={'/form/' + element.id}> 
-									<button clasName="pencil" style={{border: "none", backgroundColor: "white", margin: "10px"}}><i class="fa-solid fa-pencil"></i></button>
+									<button className="pencil" style={{border: "none", backgroundColor: "white", margin: "10px"}}><i className="fa-solid fa-pencil"></i></button>
 								</Link>
 								{/* <button onClick={() => handlerEdit(element)}>editar</button> */}
-								<button style={{border: "none", backgroundColor: "white", margin: "25px" }} onClick={() => deleteContact(element.id)}><i class="fa-solid fa-trash"></i></button>
+								<button style={{border: "none", backgroundColor: "white", margin: "25px" }} onClick={() => deleteContact(element.id)}><i className="fa-solid fa-trash"></i></button>
 							</div>
 						</div>
 					)

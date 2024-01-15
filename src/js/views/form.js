@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router"; // importar el use params
 import { Context } from "../store/appContext";
 
@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 const Formulario = () => {
     const urlBase = "https://playground.4geeks.com/apis/fake/contact/"
 
-    let { id } = useParams(); // Para las rutas dinamicas, 
+    let { id } = useParams(); // Para las rutas dinamicas, puedo usarlo a las funciones al mismo nivel
     const [fullName, setFullName] = useState(); // crear los estados para capturar los valores ingresados al formulario
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
@@ -63,8 +63,32 @@ const Formulario = () => {
             console.log(error);
         }
     }
+// Hcer un un get a la api para obtener un contacto en especifico
+    async function getConctactsForm() {
+		if(id == "new"){ // ojo con los valroes falsy. el signo de exclamacion me hace preguntar si el valor es falsy
+            return
+        }
+        try {
+			//la variable pasaria a ser una promesa por el fetch
+			let response = await fetch(`${urlBase}/${id}`) // completar la url deacuerdo a la API
+			let data = await response.json() // convertir picode a Json--> tipo de dato JS
+			console.log(data);
+            setFullName(data.full_name) // setear los estados
+            setEmail(data.email)
+            setPhone(data.phone)
+            setAddress(data.address)
 
-    console.log(store.currentInformation);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+    console.log(id);
+
+    useEffect(()=>{ //ejecutar la funcion que tiene como parametro
+        getConctactsForm()
+    }, [])
+
+    // console.log(store.currentInformation);
     return (
         <div className="container   ">
             {/* me lleva a la ruta si es un nuevo contacto o a editar contato, aca solo muestro como funciona */}
@@ -74,20 +98,20 @@ const Formulario = () => {
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Fullname</label>
                     {/* onChage para capturar el name, uso la funcion */}
-                    <input onChange={(e) => setFullName(e.target.value)}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input onChange={(e) => setFullName(e.target.value)} value={fullName}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="2" />
+                    <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" className="form-control" id="2" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Phone</label>
-                    <input onChange={(e) => setPhone(e.target.value)}  type="number" className="form-control" id="3" />
+                    <input onChange={(e) => setPhone(e.target.value)}  value={phone} type="number" className="form-control" id="3" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Address</label>
-                    <input onChange={(e) => setAddress(e.target.value)}  type="text" className="form-control" id="4" />
+                    <input onChange={(e) => setAddress(e.target.value)} value={address} type="text" className="form-control" id="4" />
                 </div>
                 {/* funcion para hacer la creacion del contacto */}
                 <button onClick={envioInformacion} type="submit" className="btn btn-primary">Submit</button>
