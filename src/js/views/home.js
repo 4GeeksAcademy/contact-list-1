@@ -13,7 +13,7 @@ export const Home = () => {
 
 	const {store, actions} = useContext(Context) // cuando es global utilizo { }
 
-	let { id } = useParams()
+	let { id } = useParams() // ?? poderlo utilizar aca??
 
 	const navigate = useNavigate()
 	//metodo get
